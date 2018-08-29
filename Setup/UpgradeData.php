@@ -60,6 +60,10 @@ class UpgradeData implements UpgradeDataInterface
         if (version_compare($context->getVersion(), '2.0.2', '<')) {
             $this->upgradeToVersionTwoZeroTwo($setup);
         }
+
+        if (version_compare($context->getVersion(), '2.0.3', '<')) {
+            $this->upgradeToVersionTwoZeroTree($setup);
+        }
     }
 
     /**
@@ -173,6 +177,46 @@ class UpgradeData implements UpgradeDataInterface
                     'length' => 10,
                     'nullable' => true,
                     'comment' => 'Price'
+                ]
+            );
+
+        $installer->endSetup();
+    }
+
+    /**
+     * Upgrade to version 2.0.3, add fields (status,shelf_life) in `sendquote table`
+     *
+     * @param ModuleDataSetupInterface $setup
+     * @return void
+     */
+    private function upgradeToVersionTwoZeroTree(ModuleDataSetupInterface $setup)
+    {
+        $installer = $setup;
+
+        $installer->startSetup();
+
+        $installer->getConnection()
+            ->addColumn(
+                $installer->getTable('sendquote'),
+                'status',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                    'unsigned' => true,
+                    'nullable' => false,
+                    'comment' => 'Status',
+                    'default' => '0'
+                ]
+            );
+
+            $installer->getConnection()
+            ->addColumn(
+                $installer->getTable('sendquote'),
+                'shelf_life',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+                    'nullable' => false,
+                    'comment' => 'Shelf Live',
+                    'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT
                 ]
             );
 
