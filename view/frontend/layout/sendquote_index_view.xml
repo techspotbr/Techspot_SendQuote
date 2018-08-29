@@ -12,7 +12,7 @@
             <block class="Magento\Framework\View\Element\Js\Components" name="sendquote_head_components" template="Techspot_SendQuote::js/components.phtml"/>
         </referenceBlock>
         <referenceContainer name="content">
-            <block class="Techspot\SendQuote\Block\Customer\Sendquote" name="customer.sendquote" template="Techspot_SendQuote::view.phtml" cacheable="false">
+            <block class="Techspot\SendQuote\Block\Customer\View" name="customer.sendquote" template="Techspot_SendQuote::view.phtml" cacheable="false">
                 <block class="Techspot\SendQuote\Block\Rss\Link" name="sendquote.rss.link" template="Techspot_SendQuote::rss/sendquote.phtml"/>
                 <block class="Techspot\SendQuote\Block\Customer\Sendquote\Items" name="customer.sendquote.items" as="items" template="Techspot_SendQuote::item/list.phtml" cacheable="false">
                     <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Image" name="customer.sendquote.item.image" template="Techspot_SendQuote::item/column/image.phtml" cacheable="false"/>
