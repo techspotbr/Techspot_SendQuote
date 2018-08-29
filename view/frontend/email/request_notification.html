@@ -1,0 +1,35 @@
+<!--
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Take a look at %customer_name's Quote" customer_name=$customerName}} @-->
+<!--@vars {
+"var customerName":"Customer Name",
+"var viewOnSiteLink":"View Quote URL",
+"var items|raw":"Quotation Items",
+"var message|raw":"Quotation Message"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "%customer_name  asks for the quotation of the following products:" customer_name=$customerName store_name=$store.getFrontendName()}}</p>
+{{depend message}}
+<table class="message-info">
+    <tr>
+        <td>
+            <h3>{{trans "Message from %customer_name:" customer_name=$customerName}}</h3>
+            {{var message|raw}}
+        </td>
+    </tr>
+</table>
+<br />
+{{/depend}}
+
+{{var items|raw}}
+<br/>
+
+<p><a href="{{var viewOnSiteLink}}">{{trans "View all Quotation items"}}</a></p>
+
+{{template config_path="design/email/footer_template"}}

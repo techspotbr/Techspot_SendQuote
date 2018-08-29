@@ -1,0 +1,47 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Techspot\SendQuote\Block\Customer\Quotations $block */
+?>
+<?php $_quotations = $block->getQuotations(); ?>
+<?php if ($_quotations && count($_quotations)): ?>
+    <div class="table-wrapper quotations-history">
+        <table class="data table table-quotation-items history" id="my-quotations-table">
+            <caption class="table-caption"><?= /* @escapeNotVerified */ __('Orders') ?></caption>
+            <thead>
+                <tr>
+                <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Quotation #') ?></th>
+                    <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date') ?></th>
+                    <th scope="col" class="col total"><?= /* @escapeNotVerified */ __('Items Qty') ?></th>
+                    <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status') ?></th>
+                    <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_quotations as $_quotation): ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('Quotation #')) ?>" class="col id"><?= /* @escapeNotVerified */ $_quotation->getSendquoteId() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_quotation->getUpdatedAt()) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Items Qty')) ?>" class="col total"><?//= /* @escapeNotVerified */ $_quotation->formatPrice($_quotation->getGrandTotal()) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?//= /* @escapeNotVerified */ $_quotation->getStatusLabel() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                            <a href="<?= /* @escapeNotVerified */ $block->getViewUrl($_quotation) ?>" class="action view">
+                                <span><?= /* @escapeNotVerified */ __('View Quotation') ?></span>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php /* if ($block->getPagerHtml()): ?>
+        <div class="quotation-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif*/ ?>
+<?php else: ?>
+    <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have placed no quotations.') ?></span></div>
+<?php endif ?>

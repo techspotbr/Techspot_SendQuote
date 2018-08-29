@@ -1,0 +1,92 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Quotation & Account Information')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information">
+            <?php /* Order Information */ ?>
+            <?php //$confirmationEmailStatusMessage = $order->getEmailSent() ? __('The order confirmation email was sent') : __('The order confirmation email is not sent'); ?>
+            <div class="admin__page-section-item-title">
+                <span class="title">
+                    NUMERO DO ORCAMENTO
+                </span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-information-table">
+                <tr>
+                    <th><?= $block->escapeHtml(__('Quotation Date')) ?></th>
+                    <td><?//= $block->escapeHtml($orderAdminDate) ?></td>
+                </tr>
+                <tr>
+                    <th><?= $block->escapeHtml(__('Quotation Status')) ?></th>
+                    <td><span id="quotation_status"><?//= $block->escapeHtml($order->getStatusLabel()) ?></span></td>
+                </tr>
+                
+                <?php //if ($block->isSingleStoreMode() == false):?>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Quotation From')) ?></th>
+                        <td><?//= $block->escapeHtml($block->getOrderStoreName(), ['br']) ?></td>
+                    </tr>
+                <?php //endif; ?>
+               
+                
+                <?php //if ($order->getGlobalCurrencyCode() != $order->getBaseCurrencyCode()): ?>
+                    <tr>
+                        <th><?//= $block->escapeHtml(__('%1 / %2 rate:', $order->getGlobalCurrencyCode(), $order->getBaseCurrencyCode())) ?></th>
+                        <td><?//= $block->escapeHtml($order->getBaseToGlobalRate()) ?></td>
+                    </tr>
+                <?php //endif; ?>
+                <?php /*if ($order->getBaseCurrencyCode() != $order->getOrderCurrencyCode()): ?>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('%1 / %2 rate:', $order->getOrderCurrencyCode(), $order->getBaseCurrencyCode())) ?></th>
+                        <th><?= $block->escapeHtml($order->getBaseToOrderRate()) ?></th>
+                    </tr>
+                <?php endif;*/ ?>
+            </table>
+            </div>
+        </div>
+
+        <div class="admin__page-section-item order-account-information">
+            <?php /* Account Information */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Account Information')) ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-account-information-table">
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Customer Name')) ?></th>
+                        <td>
+                            <span>Nome do Cliente</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Email')) ?></th>
+                        <td><a href="mailto:<?php //echo $block->escapeHtml($order->getCustomerEmail()) ?>">Email do Cliente<?php //echo $block->escapeHtml($order->getCustomerEmail()) ?></a></td>
+                    </tr>
+                    <?php if ($groupName = $block->getCustomerGroupName()) : ?>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Customer Group')) ?></th>
+                            <td><spas>Grupo do Cliente</span><?//= $block->escapeHtml($groupName) ?></td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</section>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= /* @escapeNotVerified */ __('Items Quotation') ?></span>
+    </div>
+    <?= $block->getChildHtml('quotation_items'); ?>
+</section>

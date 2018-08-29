@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page_types xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_types.xsd">
+    <type id="sendquote_index_index" label="Customer My Account My Quotations"/>
+    <type id="sendquote_index_share" label="Customer My Account Quotations Sharing Form"/>
+    <type id="sendquote_shared_index" label="Customer Shared Quotations View"/>
+    <type id="sendquote_index_configure" label="Configure Quotations Item"/>
+</page_types>

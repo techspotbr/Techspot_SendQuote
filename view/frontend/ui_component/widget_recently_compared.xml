@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="widget_columns">
+        <column name="addtosendquote-button" component="Techspot_SendQuote/js/product/addtosendquote-button" sortOrder="1" displayArea="action-secondary-area">
+            <settings>
+                <label translate="true">Add To Sendquote</label>
+                <bodyTmpl>Techspot_SendQuote/product/addtosendquote-button</bodyTmpl>
+            </settings>
+        </column>
+    </columns>
+</listing>

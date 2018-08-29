@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Techspot\SendQuote\Block\AddToSendquote $block */
+?>
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "addToSendquote": <?= /* @noEscape */ $this->helper(\Magento\Framework\Json\Helper\Data::class)
+                ->jsonEncode($block->getSendquoteOptions());
+            ?>
+        }
+    }
+</script>

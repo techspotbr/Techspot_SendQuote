@@ -1,0 +1,28 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<form id="edit_form" method="post" action="<?= /* @escapeNotVerified */ $block->getSaveUrl() ?>">
+    <?= $block->getBlockHtml('formkey') ?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Items Quotation')); ?></span>
+    </div>
+    <?= $block->getChildHtml('quotation_items'); ?>
+</section>
+</form>
+<script>
+require([
+    "jquery",
+    "mage/mage",
+    "prototype"
+], function(jQuery){
+    jQuery('#edit_form').mage('form').mage('validation');
+
+});
+</script>

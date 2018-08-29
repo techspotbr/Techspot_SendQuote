@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components" name="sendquote_head_components" template="Techspot_SendQuote::js/components.phtml"/>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Techspot\SendQuote\Block\Customer\Sendquote" name="customer.sendquote" template="Techspot_SendQuote::view.phtml" cacheable="false">
+                <block class="Techspot\SendQuote\Block\Rss\Link" name="sendquote.rss.link" template="Techspot_SendQuote::rss/sendquote.phtml"/>
+                <block class="Techspot\SendQuote\Block\Customer\Sendquote\Items" name="customer.sendquote.items" as="items" template="Techspot_SendQuote::item/list.phtml" cacheable="false">
+                    <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Image" name="customer.sendquote.item.image" template="Techspot_SendQuote::item/column/image.phtml" cacheable="false"/>
+                    <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Info" name="customer.sendquote.item.name" template="Techspot_SendQuote::item/column/name.phtml" cacheable="false"/>
+                    <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Price" name="customer.sendquote.item.price" template="Techspot_SendQuote::item/column/price.phtml" cacheable="false">
+                        <block class="Magento\Catalog\Pricing\Render" name="product.price.render.sendquote">
+                            <arguments>
+                                <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                                <argument name="price_type_code" xsi:type="string">sendquote_configured_price</argument>
+                                <argument name="price_label" xsi:type="boolean">false</argument>
+                                <argument name="zone" xsi:type="string">item_list</argument>
+                            </arguments>
+                        </block>
+                        <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Options" name="customer.sendquote.item.options" cacheable="false"/>
+                    </block>
+                    <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Actions" name="customer.sendquote.item.inner" template="Techspot_SendQuote::item/column/actions.phtml" cacheable="false">
+                        <arguments>
+                            <argument name="css_class" xsi:type="string">product-item-inner</argument>
+                        </arguments>
+                        <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Comment" name="customer.sendquote.item.comment" template="Techspot_SendQuote::item/column/comment.phtml" cacheable="false">
+                            <arguments>
+                                <argument name="title" translate="true" xsi:type="string">Product Details and Comment</argument>
+                            </arguments>
+                        </block>
+                        <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Cart" name="customer.sendquote.item.cart" template="Techspot_SendQuote::item/column/cart.phtml" cacheable="false">
+                            <arguments>
+                                <argument name="title" translate="true" xsi:type="string">Add to Cart</argument>
+                            </arguments>
+                        </block>
+
+                        <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Actions" name="customer.sendquote.item.actions" template="Techspot_SendQuote::item/column/actions.phtml" cacheable="false">
+                            <arguments>
+                                <argument name="css_class" xsi:type="string">product-item-actions</argument>
+                            </arguments>
+                            <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Edit" name="customer.sendquote.item.edit" template="Techspot_SendQuote::item/column/edit.phtml" before="-" cacheable="false"/>
+                            <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Remove" name="customer.sendquote.item.remove" template="Techspot_SendQuote::item/column/remove.phtml" cacheable="false"/>
+                        </block>
+                    </block>
+                </block>
+                <container name="customer.sendquote.buttons" as="control_buttons" label="Sendquote Control Buttons">
+                    <block class="Techspot\SendQuote\Block\Customer\Sendquote\Button" name="customer.sendquote.button.update" template="Techspot_SendQuote::button/update.phtml" cacheable="false"/>
+                    <block class="Techspot\SendQuote\Block\Customer\Sendquote\Button" name="customer.sendquote.button.request" template="Techspot_SendQuote::button/request.phtml" cacheable="false"/>
+                    <!--block class="Techspot\SendQuote\Block\Customer\Sendquote\Button" name="customer.sendquote.button.share" template="Techspot_SendQuote::button/share.phtml" cacheable="false"/-->
+                    <block class="Techspot\SendQuote\Block\Customer\Sendquote\Button" name="customer.sendquote.button.toCart" template="Techspot_SendQuote::button/tocart.phtml" cacheable="false"/>
+                </container>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

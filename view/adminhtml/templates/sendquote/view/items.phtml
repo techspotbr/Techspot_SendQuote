@@ -1,0 +1,34 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="admin__table-wrapper">
+    <table class="data-table admin__table-primary order-quotation-tables">
+        <thead>
+            <tr class="headings">
+                <th class="col-product-sku"><span><?= /* @escapeNotVerified */ __('Product ID') ?></span></th>
+                <th class="col-product-name"><span><?= /* @escapeNotVerified */ __('Product Name') ?></span></th>
+                <th class="col-store-id"><span><?= /* @escapeNotVerified */ __('Store ID') ?></span></th>
+                <th class="col-description"><span><?= /* @escapeNotVerified */ __('Description') ?></span></th>
+                <th class="col-qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></th>
+                <th class="col-price"><span><?= /* @escapeNotVerified */ __('Unit Price') ?></span></th>
+                <th class="col-custom-price"><span><?= /* @escapeNotVerified */ __('Unit Custom Price') ?></span></th>
+                <th class="col-last-custom-price"><span><?= /* @escapeNotVerified */ __('Last Price by') ?></span></th>
+                <th class="col-total last"><span><?= /* @escapeNotVerified */ __('Row Total') ?></span></th>
+            </tr>
+        </thead>
+
+        <?php $_items = $block->getAllItems() ?>
+        <?php foreach ($_items as $_item): ?>
+            <tbody class="even">
+                <?= $block->getItemHtml($_item) ?>
+                <?php //echo $_item->getDescription(); ?>
+            </tbody>
+        <?php endforeach;?>
+    </table>
+</div>

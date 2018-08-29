@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Techspot\SendQuote\Block\Customer\Sendquote $block */
+?>
+<?php if ($this->helper('Techspot\SendQuote\Helper\Data')->isAllow()) : ?>
+    <?= ($block->getChildHtml('sendquote.rss.link')) ?>
+    <form class="form-sendquote-items" id="sendquote-view-form"
+          data-mage-init='{"sendquote":{
+          "addToCartUrl":<?= /* @noEscape */ $block->getItemAddToCartParams("%item%") ?>,
+          "addAllToCartUrl":<?= /* @noEscape */ $block->getAddAllToCartParams() ?>,
+          "commentString":""},
+          "validation": {}}' action="<?= $block->escapeUrl($block->getUrl('sendquote/index/update', ['sendquote_id' => $block->getSendquoteInstance()->getId()])) ?>" method="post">
+        <?= $block->getChildHtml('top') ?>
+        <?php if ($block->hasSendquoteItems()): ?>
+            <?= $block->getBlockHtml('formkey') ?>
+            <?php $block->getChildBlock('items')->setItems($block->getSendquoteItems()); ?>
+            <?= $block->getChildHtml('items') ?>
+        <?php else: ?>
+            <div class="message info empty"><span><?= $block->escapeHtml(__('You have no items in your quotations.')) ?></span></div>
+        <?php endif ?>
+        <?= $block->getChildHtml('bottom') ?>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <?= $block->getChildHtml('control_buttons') ?>
+            </div>
+            <div class="secondary">
+                <a href="<?= $block->escapeUrl($block->getBackUrl()) ?>" class="action back">
+                    <span><?= $block->escapeHtml(__('Back')) ?></span>
+                </a>
+            </div>
+        </div>
+    </form>
+    <script id="form-tmpl" type="text/x-magento-template">
+      <form id="sendquote-hidden-form" method="post" action="<%- data.url %>" class="no-display">
+          <% if (data.qty) { %>
+          <input name="qty" value="<%- data.qty %>">
+          <% } %>
+          
+          <% if (data.item) { %>
+          <input name="item" value="<%- data.item %>">
+          <% } %>
+          
+          <% if (data.entity) { %>
+          <input name="entity" value="<%- data.entity %>">
+          <% } %>
+      </form>
+  </script>
+<?php endif ?>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="catalog_product_view"/>
+    <body>
+        <referenceBlock name="product.info.addto">
+            <block class="Techspot\SendQuote\Block\Item\Configure" name="view.addto.sendquote"
+                template="Techspot_SendQuote::item/configure/addto/sendquote.phtml" />
+        </referenceBlock>
+    </body>
+</page>

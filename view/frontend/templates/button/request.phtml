@@ -1,0 +1,15 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Techspot\SendQuote\Block\Customer\Sendquote\Button $block */
+?>
+<?php if ($block->getSendquote()->getItemsCount() && $block->getSendquote()->getShared() < $block->getConfig()->getSharingEmailLimit()): ?>
+    <button type="submit" name="save_and_request" title="<?= $block->escapeHtmlAttr(__('Request Quotation')) ?>" class="action request">
+        <span><?= $block->escapeHtml(__('Request Quotation')) ?></span>
+    </button>
+<?php endif;?>

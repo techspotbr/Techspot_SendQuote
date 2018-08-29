@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
+    <action name="sendquote/index/add">
+        <section name="sendquote"/>
+    </action>
+    <action name="sendquote/index/remove">
+        <section name="sendquote"/>
+    </action>
+    <action name="sendquote/index/updateItemOptions">
+        <section name="sendquote"/>
+    </action>
+    <action name="sendquote/index/update">
+        <section name="sendquote"/>
+    </action>
+    <action name="sendquote/index/cart">
+        <section name="sendquote"/>
+        <section name="cart"/>
+    </action>
+    <action name="sendquote/index/fromcart">
+        <section name="sendquote"/>
+        <section name="cart"/>
+    </action>
+    <action name="sendquote/index/allcart">
+        <section name="sendquote"/>
+        <section name="cart"/>
+    </action>
+
+    <action name="sendquote/shared/allcart">
+        <section name="sendquote"/>
+        <section name="cart"/>
+    </action>
+    <action name="sendquote/shared/cart">
+        <section name="cart"/>
+    </action>
+</config>

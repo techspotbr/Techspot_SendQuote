@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="catalogsearch.product.addto">
+                <block class="Techspot\SendQuote\Block\Catalog\Product\ProductList\Item\AddTo\Sendquote"
+                       name="catalogsearch.product.addto.sendquote" as="sendquote" before="compare"
+                       template="Techspot_SendQuote::catalog/product/list/addto/sendquote.phtml"/>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>

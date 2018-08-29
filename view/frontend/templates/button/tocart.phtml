@@ -1,0 +1,16 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Techspot\SendQuote\Block\Customer\Sendquote\Button $block */
+?>
+
+<?php if ($block->getSendquote()->getItemsCount() && $block->getSendquote()->isSalable()): ?>
+    <button type="button" data-role="all-tocart" title="<?= $block->escapeHtmlAttr(__('Add All to Cart')) ?>" class="action tocart">
+        <span><?= $block->escapeHtml(__('Add All to Cart')) ?></span>
+    </button>
+<?php endif;?>

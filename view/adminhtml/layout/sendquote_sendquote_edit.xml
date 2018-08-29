@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Techspot\SendQuote\Block\Adminhtml\Sendquote\Edit" name="sendquote_edit">
+                <block class="Techspot\SendQuote\Block\Adminhtml\Sendquote\Edit\Form" name="form" template="Techspot_SendQuote::sendquote/edit/form.phtml">
+                <block class="Techspot\SendQuote\Block\Adminhtml\Sendquote\Edit\Items" name="quotation_items" template="Techspot_SendQuote::sendquote/edit/items.phtml">
+                        <block class="Techspot\SendQuote\Block\Adminhtml\Sendquote\Edit\Items\Renderer\DefaultRenderer" name="default" as="default" template="Techspot_SendQuote::sendquote/edit/items/renderer/default.phtml"/>
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Column\Qty" name="column_qty" template="Magento_Sales::items/column/qty.phtml" group="column"/>
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Column\Name" name="column_name" template="Magento_Sales::items/column/name.phtml" group="column"/>
+                        <block class="Magento\Framework\View\Element\Text\ListText" name="order_item_extra_info"/>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

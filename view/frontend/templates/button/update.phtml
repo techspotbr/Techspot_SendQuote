@@ -1,0 +1,16 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Techspot\SendQuote\Block\Customer\Sendquote\Button $block */
+?>
+
+<?php if ($block->getSendquote()->getItemsCount()): ?>
+    <button type="submit" name="do" title="<?= $block->escapeHtmlAttr(__('Update Quotation')) ?>" class="action update">
+        <span><?= $block->escapeHtml(__('Update Quotation')) ?></span>
+    </button>
+<?php endif;?>

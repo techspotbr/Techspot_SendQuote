@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Techspot\SendQuote\Block\Item\configure $block */
+?>
+
+<div class="product-addto-links" data-role="add-to-links">
+    <?php if ($this->helper('Techspot\SendQuote\Helper\Data')->isAllow()) : ?>
+        <a href="#" data-post='<?= /* @noEscape */ $block->getUpdateParams() ?>' class="action tosendquote updated" data-action="add-to-sendquote">
+            <span><?= $block->escapeHtml(__('Update Quotation')) ?></span>
+        </a>
+    <?php endif; ?>
+    <?php $_product = $block->getProduct(); ?>
+    <?php $_compareUrl = $this->helper('Magento\Catalog\Helper\Product\Compare')->getAddUrl($_product); ?>
+    <?php if ($_compareUrl) : ?>
+        <a href="<?= $block->escapeUrl($_compareUrl) ?>" class="action tocompare">
+            <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+        </a>
+    <?php endif; ?>
+</div>
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "addToSendquote": <?= /* @noEscape */ $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($block->getSendquoteOptions()) ?>
+        }
+    }
+</script>

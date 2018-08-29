@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Edit $block */
+
+/** @var \Techspot\SendQuote\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+?>
+
+<?php if ($product->isVisibleInSiteVisibility()): ?>
+    <a class="action edit" href="<?= $block->escapeUrl($block->getItemConfigureUrl($item)) ?>">
+        <span><?= $block->escapeHtml(__('Edit')) ?></span>
+    </a>
+<?php endif ?>

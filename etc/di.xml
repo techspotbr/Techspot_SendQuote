@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * O Módulo Tech Spot - Send Quote para Magento 2 habilita o cadastro de clientes PF (Pessoa Física) e PJ(Pessoa Jurídica) no cadastro do cliente da sua aplicação Magento.
+ * Copyright (C) 2017  Tech Spot 
+ * 
+ * This file is part of Techspot/Brcustomer.
+ * 
+ * Techspot/Brcustomer is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Techspot\SendQuote\Api\Data\SendquoteInterface" type="Techspot\SendQuote\Model\Sendquote"/>
+    <preference for="Techspot\SendQuote\Api\Data\SendquoteItemInterface" type="Techspot\SendQuote\Model\Item"/>
+    <preference for="Techspot\SendQuote\Api\Data\SendquoteItemSearchResultInterface" type="Techspot\SendQuote\Model\ResourceModel\Item\Collection"/>
+    <preference for="Techspot\SendQuote\Api\Data\SendquoteSearchResultInterface" type="Techspot\SendQuote\Model\ResourceModel\Sendquote\Collection"/>
+    <preference for="Techspot\SendQuote\Api\SendquoteRepositoryInterface" type="Techspot\SendQuote\Model\SendquoteRepository"/>
+    <preference for="Magento\Catalog\Pricing\Render\FinalPriceBox" type="Techspot\SendQuote\Pricing\Render\FinalPriceBox" />
+    <preference for="Techspot\SendQuote\Model\AuthenticationStateInterface" type="Techspot\SendQuote\Model\AuthenticationState" />
+    <preference for="Techspot\SendQuote\Controller\SendquoteProviderInterface" type="Techspot\SendQuote\Controller\SendquoteProvider" />
+    <preference for="Techspot\SendQuote\Model\ResourceModel\Sendquote\CollectionFactoryInterface" type="Techspot\SendQuote\Model\ResourceModel\Sendquote\CollectionFactory"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sendquote_sendquote_grid_data_source" xsi:type="string">Techspot\SendQuote\Model\ResourceModel\Sendquote\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Techspot\SendQuote\Model\ResourceModel\Item\Collection\Grid">
+        <arguments>
+            <argument name="resource" xsi:type="object">Techspot\SendQuote\Model\ResourceModel\Item</argument>
+        </arguments>
+    </type>
+    <type name="Techspot\SendQuote\Helper\Data">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Techspot\SendQuote\Controller\AbstractIndex">
+        <plugin name="authentication" type="Techspot\SendQuote\Controller\Index\Plugin" sortOrder="10"/>
+    </type>
+    <virtualType name="Techspot\SendQuote\Block\Context" type="Techspot\SendQuote\Block\Catalog\Product\Context">
+        <arguments>
+            <argument name="sendquoteHelper" xsi:type="object">Techspot\SendQuote\Helper\Rss</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\App\Rss\RssManagerInterface">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="sendquote" xsi:type="string">Techspot\SendQuote\Model\Rss\Sendquote</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Magento\Bundle\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
+        <arguments>
+            <argument name="prices" xsi:type="array">
+                <item name="sendquote_configured_price" xsi:type="string">Magento\Bundle\Pricing\Price\ConfiguredPrice</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magento\Catalog\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
+        <arguments>
+            <argument name="prices" xsi:type="array">
+                <item name="sendquote_configured_price" xsi:type="string">Magento\Catalog\Pricing\Price\ConfiguredPrice</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magento\ConfigurableProduct\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
+        <arguments>
+            <argument name="prices" xsi:type="array">
+                <item name="sendquote_configured_price" xsi:type="string">Techspot\SendQuote\Pricing\ConfiguredPrice\ConfigurableProduct</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magento\Downloadable\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
+        <arguments>
+            <argument name="prices" xsi:type="array">
+                <item name="sendquote_configured_price" xsi:type="string">Techspot\SendQuote\Pricing\ConfiguredPrice\Downloadable</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magento\GroupedProduct\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
+        <arguments>
+            <argument name="prices" xsi:type="array">
+                <item name="sendquote_configured_price" xsi:type="string">Magento\GroupedProduct\Pricing\Price\ConfiguredPrice</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Catalog\Ui\DataProvider\Product\Listing\DataProvider">
+        <plugin name="sendquoteSettingsDataProvider" type="Techspot\SendQuote\Plugin\Ui\DataProvider\SendquoteSettings"/>
+    </type>
+    <type name="Magento\Catalog\Ui\DataProvider\Product\ProductRenderCollectorComposite">
+        <arguments>
+            <argument name="productProviders" xsi:type="array">
+                <item name="sendquote_url" xsi:type="object">\Techspot\SendQuote\Ui\DataProvider\Product\Collector\Button</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
