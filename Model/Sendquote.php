@@ -30,6 +30,17 @@ use Techspot\SendQuote\Model\ResourceModel\Sendquote\Collection;
  */
 class Sendquote extends \Magento\Framework\Model\AbstractModel implements \Magento\Framework\DataObject\IdentityInterface
 {
+
+    const SENDQUOTE_STATUS_WAITING_ANSWER = 0;
+    const SENDQUOTE_STATUS_ANSWERED = 1;
+    const SENDQUOTE_STATUS_IN_QUOTATION = 2;
+    const SENDQUOTE_STATUS_VARNISHED = 3;
+
+    /**
+     * @var array
+     */
+    protected static $_status;
+
     /**
      * Cache tag
      */
@@ -705,5 +716,45 @@ class Sendquote extends \Magento\Framework\Model\AbstractModel implements \Magen
             $identities = [self::CACHE_TAG . '_' . $this->getId()];
         }
         return $identities;
+    }
+
+
+    /**
+     * Retrieve sendquote statuss array
+     *
+     * @return array
+     */
+    public static function getStatusCode()
+    {
+        if (null === static::$_status) {
+            static::$_status = [
+                self::SENDQUOTE_STATUS_WAITING_ANSWER => __('Waiting answer'),
+                self::SENDQUOTE_STATUS_ANSWERED => __('Answered'),
+                self::SENDQUOTE_STATUS_IN_QUOTATION => __('In quotation'),
+                self::SENDQUOTE_STATUS_VARNISHED => __('Varnished')
+            ];
+        }
+        return static::$_status;
+    }
+
+    /**
+     * Retrieve sendquote status name by status identifier
+     *
+     * @param   int|null $statusId
+     * @return \Magento\Framework\Phrase
+     */
+    public function getStatusName($statusId = null)
+    {
+        if ($statusId === null) {
+            $statusId = $this->getStatusCode();
+        }
+
+        if (null === static::$_status) {
+            static::getStatusCode();
+        }
+        if (isset(static::$_status[$statusId])) {
+            return static::$_status[$statusId];
+        }
+        return __('Unknown Status');
     }
 }
