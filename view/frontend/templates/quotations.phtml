@@ -27,8 +27,8 @@
                     <tr>
                         <td data-th="<?= $block->escapeHtml(__('Quotation #')) ?>" class="col id"><?= /* @escapeNotVerified */ $_quotation->getSendquoteId() ?></td>
                         <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_quotation->getUpdatedAt()) ?></td>
-                        <td data-th="<?= $block->escapeHtml(__('Items Qty')) ?>" class="col total"><?//= /* @escapeNotVerified */ $_quotation->formatPrice($_quotation->getGrandTotal()) ?></td>
-                        <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?//= /* @escapeNotVerified */ $_quotation->getStatusLabel() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Items Qty')) ?>" class="col total"><?= /* @escapeNotVerified */ $_quotation->getItemsCount() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= /* @escapeNotVerified */ $_quotation->getStatusName($_quotation->getStatus()) ?></td>
                         <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
                             <a href="<?= /* @escapeNotVerified */ $block->getViewUrl($_quotation) ?>" class="action view">
                                 <span><?= /* @escapeNotVerified */ __('View Quotation') ?></span>
