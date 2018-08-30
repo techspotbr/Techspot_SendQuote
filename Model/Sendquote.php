@@ -210,13 +210,31 @@ class Sendquote extends \Magento\Framework\Model\AbstractModel implements \Magen
         $customerId = (int)$customerId;
         $customerIdFieldName = $this->_getResource()->getCustomerIdFieldName();
         $this->_getResource()->load($this, $customerId, $customerIdFieldName);
+
+
+        // Force always create new
+        $row = $this->_getResource()->create();
+        $row->addData([
+			"customer_id" => $customerId,
+			"sharing_code" => $this->_getSharingRandomCode(),
+			"status" => 1,
+            "created_at" => '2018-08-30 04:00:00',
+            "updated_at" => '2018-08-30 04:00:00'
+			]);
+        $row->save();
+        return $this;
+
+
+        /*
+
         if (!$this->getId() && $create) {
             $this->setCustomerId($customerId);
             $this->setSharingCode($this->_getSharingRandomCode());
             $this->save();
         }
+        */
 
-        return $this;
+        //return $this;
     }
 
     /**

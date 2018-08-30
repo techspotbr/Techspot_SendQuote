@@ -64,6 +64,18 @@ class UpgradeData implements UpgradeDataInterface
         if (version_compare($context->getVersion(), '2.0.3', '<')) {
             $this->upgradeToVersionTwoZeroTree($setup);
         }
+
+        if (version_compare($context->getVersion(), '2.0.4', '<')) {
+            $this->upgradeToVersionTwoZeroFour($setup);
+        }
+
+        if (version_compare($context->getVersion(), '2.0.5', '<')) {
+            $this->upgradeToVersionTwoZeroFive($setup);
+        }
+
+        if (version_compare($context->getVersion(), '2.0.6', '<')) {
+            $this->upgradeToVersionTwoZeroSix($setup);
+        }
     }
 
     /**
@@ -215,11 +227,76 @@ class UpgradeData implements UpgradeDataInterface
                 [
                     'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
                     'nullable' => false,
-                    'comment' => 'Shelf Live',
-                    'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT
+                    'comment' => 'Shelf Live'
                 ]
             );
 
+        $installer->endSetup();
+    }
+
+    /**
+     * Upgrade to version 2.0.4, add fields (created_at) in `sendquote table`
+     *
+     * @param ModuleDataSetupInterface $setup
+     * @return void
+     */
+    private function upgradeToVersionTwoZeroFour(ModuleDataSetupInterface $setup)
+    {
+        $installer = $setup;
+
+        $installer->startSetup();
+
+        $installer->getConnection()
+            ->addColumn(
+                $installer->getTable('sendquote'),
+                'created_at',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+                    'nullable' => false,
+                    'comment' => 'Created Date'
+                ]
+            );
+
+        $installer->endSetup();
+    }
+
+    /**
+     * Upgrade to version 2.0.5, remove index unique from customer_id in `sendquote table`
+     *
+     * @param ModuleDataSetupInterface $setup
+     * @return void
+     */
+    private function upgradeToVersionTwoZeroFive(ModuleDataSetupInterface $setup)
+    {
+        $installer = $setup;
+
+        $installer->startSetup();
+
+        $installer->getConnection()->dropIndex($installer->getTable('sendquote'), 'SENDQUOTE_CUSTOMER_ID');
+       
+        $installer->endSetup();
+    }
+
+    /**
+     * Upgrade to version 2.0.6, add index (DEFAULT, NOT UNIQUE) from customer_id in `sendquote table`
+     *
+     * @param ModuleDataSetupInterface $setup
+     * @return void
+     */
+    private function upgradeToVersionTwoZeroSix(ModuleDataSetupInterface $setup)
+    {
+        $installer = $setup;
+
+        $installer->startSetup();
+
+        //addIndex($tableName, $indexName, $fields, $indexType = self::INDEX_TYPE_INDEX, $schemaName = null);
+
+        $installer->getConnection()->addIndex(
+            'sendquote',
+            'SENDQUOTE_CUSTOMER_ID',
+            'customer_id',
+            \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_INDEX
+        );
         $installer->endSetup();
     }
 }

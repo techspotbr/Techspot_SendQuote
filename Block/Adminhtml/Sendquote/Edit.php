@@ -108,7 +108,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
             $this->getSendquote()->getCustomerId(),
             '',
             $this->formatDate(
-                $this->_localeDate->date(new \DateTime($this->getSendquote()->getUpdatedAt())),
+                $this->_localeDate->date(new \DateTime($this->getSendquote()->getCreatedAt())),
                 \IntlDateFormatter::MEDIUM,
                 true
             )
