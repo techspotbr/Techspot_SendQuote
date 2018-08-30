@@ -88,7 +88,7 @@ class View extends \Techspot\SendQuote\Block\AbstractBlock
     protected function _prepareLayout()
     {
         parent::_prepareLayout();
-        $this->pageConfig->getTitle()->set(__('My Quotations'));
+        $this->pageConfig->getTitle()->set(__('Quotation #'));
     }
 
     /**
