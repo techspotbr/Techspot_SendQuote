@@ -105,11 +105,13 @@ class Sendquote extends \Magento\Catalog\Block\Product\View
     /**
      * Check whether the sendquote is allowed
      *
-     * @return string
-     * @since 100.1.1
+     * @return string|bool
      */
     public function isSendQuoteAllowed()
     {
-        return $this->_sendquoteHelper->isAllow();
+        if($this->getProduct()->_getData(\Techspot\SendQuote\Model\Catalog\Product::ONLY_QUOTATION_ATTRIBUTE)){
+            return $this->_sendquoteHelper->isAllow();
+        }
+        return false;
     }
 }

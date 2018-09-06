@@ -10,7 +10,7 @@
         <referenceBlock name="customer_account_navigation">
             <block class="Magento\Customer\Block\Account\SortLinkInterface" ifconfig="sendquote/general/active" name="customer-account-navigation-sendquote-link">
                 <arguments>
-                    <argument name="path" xsi:type="string">sendquote</argument>
+                    <argument name="path" xsi:type="string">sendquote/index/quotations</argument>
                     <argument name="label" xsi:type="string" translate="true">My Quotations</argument>
                     <argument name="sortOrder" xsi:type="number">210</argument>
                 </arguments>

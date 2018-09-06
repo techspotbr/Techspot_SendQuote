@@ -67,4 +67,32 @@ class Button extends \Magento\Framework\View\Element\Template
     {
         return $this->_sendquoteConfig;
     }
+
+    /**
+     * Return true if can edit
+     * Only quotations with status = 0 can be updated
+     *
+     * @return bool
+     * */
+    public function canUpdate($sendquote)
+    {
+        if($sendquote->getStatus() == 0){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Return true if can add to cart
+     * Only quotations with status = 1 can be add to cart
+     *
+     * @return bool
+     * */
+    public function canAddToCart($sendquote)
+    {
+        if($sendquote->getStatus() == 1){
+            return true;
+        }
+        return false;
+    }
 }

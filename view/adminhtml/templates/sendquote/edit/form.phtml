@@ -9,12 +9,13 @@
 ?>
 <form id="edit_form" method="post" action="<?= /* @escapeNotVerified */ $block->getSaveUrl() ?>">
     <?= $block->getBlockHtml('formkey') ?>
-<section class="admin__page-section">
-    <div class="admin__page-section-title">
-        <span class="title"><?= $block->escapeHtml(__('Items Quotation')); ?></span>
-    </div>
-    <?= $block->getChildHtml('quotation_items'); ?>
-</section>
+    <?= $block->getFormHtml() ?>
+    <section class="admin__page-section">
+        <div class="admin__page-section-title">
+            <span class="title"><?= $block->escapeHtml(__('Items Quotation')); ?></span>
+        </div>
+        <?= $block->getChildHtml('quotation_items'); ?>
+    </section>
 </form>
 <script>
 require([

@@ -7,34 +7,42 @@ namespace Techspot\SendQuote\Block\Catalog\Product\ProductList\Item\AddTo;
 
 /**
  * Add product to sendquote
- *
- * @api
- * @since 100.1.1
  */
 class Sendquote extends \Magento\Catalog\Block\Product\ProductList\Item\Block
 {
-    /**
+     /**
      * @var Techspot\SendQuote\Helper\Data
      */
     protected $_sendquoteHelper;
-    
-    /**
-     * @param \Techspot\SendQuote\Helper\Data $sendquoteHelper
-     * @codingStandardsIgnoreStart
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-     */
+
     public function __construct(
+        \Magento\Catalog\Block\Product\Context $context,
         \Techspot\SendQuote\Helper\Data $sendquoteHelper
     ) {
+        parent::__construct(
+            $context
+        );
         $this->_sendquoteHelper = $sendquoteHelper;
     }
 
     /**
      * @return \Techspot\SendQuote\Helper\Data
-     * @since 100.1.1
      */
     public function getSendquoteHelper()
     {
         return $this->_sendquoteHelper;
+    }
+
+    /**
+     * Check whether the sendquote is allowed
+     *
+     * @return string|bool
+     */
+    public function isSendQuoteAllowed()
+    {
+        if($this->getProduct()->_getData(\Techspot\SendQuote\Model\Catalog\Product::ONLY_QUOTATION_ATTRIBUTE)){
+            return $this->_sendquoteHelper->isAllow();
+        }
+        return false;
     }
 }

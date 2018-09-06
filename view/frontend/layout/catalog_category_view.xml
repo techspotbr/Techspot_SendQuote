@@ -15,6 +15,7 @@
                     </argument>
                 </arguments>
             </block>
+            <referenceBlock name="category.products.list" template="Techspot_SendQuote::catalog/product/list.phtml"/>
             <referenceBlock name="category.product.addto">
                 <block class="Techspot\SendQuote\Block\Catalog\Product\ProductList\Item\AddTo\Sendquote"
                        name="category.product.addto.sendquote" as="sendquote" before="compare"

@@ -30,6 +30,7 @@
     <preference for="Techspot\SendQuote\Model\AuthenticationStateInterface" type="Techspot\SendQuote\Model\AuthenticationState" />
     <preference for="Techspot\SendQuote\Controller\SendquoteProviderInterface" type="Techspot\SendQuote\Controller\SendquoteProvider" />
     <preference for="Techspot\SendQuote\Model\ResourceModel\Sendquote\CollectionFactoryInterface" type="Techspot\SendQuote\Model\ResourceModel\Sendquote\CollectionFactory"/>
+    <preference for="Magento\Catalog\Model\Product" type="Techspot\SendQuote\Model\Catalog\Product" />
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">

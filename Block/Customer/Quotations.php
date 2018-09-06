@@ -105,4 +105,11 @@ class Quotations extends \Magento\Framework\View\Element\Template
         return $this->getUrl('sendquote/*/view', ['id' => $quotation->getSendquoteId()]);
     }
 
+
+    public function getStatusLabel($quotation)
+    {
+
+        
+    }
+
 }

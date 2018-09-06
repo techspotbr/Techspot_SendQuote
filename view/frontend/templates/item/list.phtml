@@ -12,27 +12,35 @@
 $columns = $block->getColumns();
 ?>
 
-<div class="products-grid sendquote">
-    <?php $iterator = 1; ?>
-    <?php if (count($block->getItems())): ?>
-    <ol class="product-items">
-        <?php foreach ($block->getItems() as $item): ?>
-        <?= /* @noEscape */ ($iterator++ == 1) ? '<li data-row="product-item" class="product-item" id="item_' . $block->escapeHtmlAttr($item->getId()) . '">' : '</li><li class="product-item" id="item_' . $block->escapeHtmlAttr($item->getId()) . '">' ?>
-            <div class="product-item-info" data-container="product-grid">
-                <?php foreach ($columns as $column): ?>
-                    <?php $column->setItem($item); echo $column->toHtml($item);?>
-                <?php endforeach; ?>
-            </div>
-        <?= ($iterator == count($block->getItems())+1) ? '</li>' : '' ?>
-        <?php endforeach; ?>
-    </ol>
-    <?php else: ?>
+
+ <div class="table-wrapper orders-history">
+        <?php $iterator = 1; ?>
+        <?php if (count($block->getItems())): ?>
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @escapeNotVerified */ __('Orders') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col product-item-photo"><?= /* @escapeNotVerified */ __('Product Image ') ?></th>
+                    <th scope="col" class="col product-item-name"><?= /* @escapeNotVerified */ __('Product Name ') ?></th>
+                    <th scope="col" class="col product-item-qty"><?= /* @escapeNotVerified */ __('Qty') ?></th>
+                    <th scope="col" class="col product-item-comment"><?= /* @escapeNotVerified */ __('Comment') ?></th>
+                    <th scope="col" class="col product-item-price"><?= /* @escapeNotVerified */ __('Price') ?></th>
+                    <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($block->getItems() as $item): ?>
+            <?= /* @noEscape */ ($iterator++ == 1) ? '<tr data-row="product-item" class="product-item" id="item_' . $block->escapeHtmlAttr($item->getId()) . '">' : '</tr><tr class="product-item" id="item_' . $block->escapeHtmlAttr($item->getId()) . '">' ?>
+                    <?php foreach ($columns as $column): ?>
+                        <?php $column->setItem($item); echo '<td>'.$column->toHtml($item).'</td>';?>
+                    <?php endforeach; ?>
+            <?= ($iterator == count($block->getItems())+1) ? '</tr>' : '' ?>
+            <?php endforeach; ?>
+            <tbody>
+        </table>
+        <?php else: ?>
         <div class="message info empty">
             <span><?= $block->escapeHtml(__('This Quote has no Items')) ?></span>
         </div>
-    <?php endif; ?>
+        <?php endif; ?>
 </div>
-
-<?php foreach ($columns as $column): ?>
-    <?= $column->getAdditionalHtml() ?>
-<?php endforeach; ?>

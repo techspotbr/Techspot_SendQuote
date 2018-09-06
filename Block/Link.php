@@ -62,7 +62,7 @@ class Link extends \Magento\Framework\View\Element\Html\Link implements SortLink
      */
     public function getHref()
     {
-        return $this->getUrl('sendquote');
+        return $this->getUrl('sendquote/index/quotations');
     }
 
     /**

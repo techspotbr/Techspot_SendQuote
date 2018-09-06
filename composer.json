@@ -1,6 +1,6 @@
 {
     "name": "techspot/sendquote",
-    "description": "The Tech Spot Send Quote Module for Magento 2 Allows you to mount a cart for quotation.",
+    "description": "The Tech Spot Send Quote Module for Magento 2 makes it possible to set up a quotation.",
     "type": "magento2-module",
     "license": "MIT",
     "authors": [

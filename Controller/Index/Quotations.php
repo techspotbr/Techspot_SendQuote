@@ -29,16 +29,13 @@ class Quotations extends \Techspot\SendQuote\Controller\AbstractIndex
     }
 
     /**
-     * Display customer sendquote
+     * Display customer quotations
      *
      * @return \Magento\Framework\View\Result\Page
      * @throws NotFoundException
      */
     public function execute()
     {
-        if (!$this->sendquoteProvider->getSendquote()) {
-            throw new NotFoundException(__('Page not found.'));
-        }
         /** @var \Magento\Framework\View\Result\Page resultPage */
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         return $resultPage;
