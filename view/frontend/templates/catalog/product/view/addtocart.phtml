@@ -9,7 +9,7 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $_product = $block->getProduct(); ?>
-<?php $buttonTitle = __('Add to Cart xxxxx'); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
 <?php if ($_product->isSaleable()): ?>
 <div class="box-tocart">
     <div class="fieldset">
@@ -28,13 +28,15 @@
             </div>
         </div>
         <?php endif; ?>
-        <div class="actions">remover botaoxxxx
+        <div class="actions">
+            <?php if (!$_product->getOnlyForQuotation()): ?>
             <button type="submit"
                     title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
                     class="action primary tocart"
                     id="product-addtocart-button">
                 <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
             </button>
+            <?php endif; ?>
             <?= $block->getChildHtml('', true) ?>
         </div>
     </div>

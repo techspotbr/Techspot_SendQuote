@@ -214,6 +214,7 @@ class Sendquote extends \Magento\Framework\Model\AbstractModel implements \Magen
         if (!$this->getId() && $create) {
             $this->setCustomerId($customerId);
             $this->setSharingCode($this->_getSharingRandomCode());
+            $this->setCreatedAt($this->_date->gmtDate());
             $this->save();
         }
 
