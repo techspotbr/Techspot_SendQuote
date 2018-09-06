@@ -52,4 +52,56 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     {
         return $this->getUrl('*/*/save', ['sendquote_id' => $this->getSendquote()->getSendquoteId()]);
     }
+
+
+    protected function _prepareForm()
+    {
+       /** @var \Magento\Framework\Data\Form $form */
+        $form = $this->_formFactory->create(
+            [
+            'data' => [
+            'id' => 'edit_form',
+            'action' => $this->getData('action'),
+            'method' => 'post',
+            'enctype' => 'multipart/form-data'
+            ]
+            ]
+        );
+
+        $fieldset = $form->addFieldset(
+            'options_fieldset',
+            ['legend' => __('Detalhes do Orçamento'), 'class' => 'fieldset-wide fieldset-widget-options']
+        );
+
+        $dateFormat = $this->_localeDate->getDateFormat(\IntlDateFormatter::SHORT);
+        $fieldset->addField(
+            'shelf_life',
+            'date',
+            [
+                'name' => 'quotation[shelf_life]',
+                'label' => __('Expirate Date'),
+                'title' => __('Expirate Date'),
+                'required' => true,
+                'date_format' => $dateFormat,
+                'time' => false
+            ]
+        );
+
+        $fieldset->addField(
+            'status',
+            'select',
+            [
+                'label'     => __('Status'),
+                'title'     => __('Status'),
+                'name'      => 'quotation[status]',
+                'required'  => true,
+                'class'     => 'required-entry',
+                'options'   => \Techspot\SendQuote\Model\Sendquote::getStatusCode()
+            ]
+        );
+        
+        $form->setUseContainer(false);
+        $this->setForm($form);
+        return parent::_prepareForm();
+    }
 }

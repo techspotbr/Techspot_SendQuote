@@ -53,4 +53,17 @@ class CollectionFactory implements CollectionFactoryInterface
 
         return $collection;
     }
+
+    public function createNew($customerId = null, $date)
+    {
+        $collection = false;
+        if ($customerId) {
+            $collection = $this->create($customerID);
+
+            if($date){
+                
+            }
+        }
+
+    }
 }

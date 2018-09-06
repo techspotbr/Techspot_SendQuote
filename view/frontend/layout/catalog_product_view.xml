@@ -15,10 +15,10 @@
                     </argument>
                 </arguments>
             </block>
-            <referenceBlock name="product.info.addtocart">
-                <block class="Techspot\SendQuote\Block\Catalog\Product\View\AddTo\Sendquote" name="view.addto.sendquote"
-                       template="Techspot_SendQuote::catalog/product/view/addto/sendquote.phtml" />
+            <referenceBlock name="product.info.addtocart" template="Techspot_SendQuote::catalog/product/view/addtocart.phtml">
+                <block class="Techspot\SendQuote\Block\Catalog\Product\View\AddTo\Sendquote" name="view.addto.sendquote" template="Techspot_SendQuote::catalog/product/view/addto/sendquote.phtml" />
             </referenceBlock>
+            <referenceBlock name="product.info.addtocart.additional" template="Techspot_SendQuote::catalog/product/view/addtocart.phtml"/>
         </referenceContainer>
         <referenceContainer name="content.aside">
             <referenceBlock name="related.product.addto">

@@ -5,7 +5,10 @@
  */
 
 // @codingStandardsIgnoreFile
-
+/**
+ * @var Techspot\SendQuote\Block\Adminhtml\Sendquote\View\Form $block
+ */
+$quotation = $block->getSendquote();
 ?>
 <section class="admin__page-section order-view-account-information">
     <div class="admin__page-section-title">
@@ -17,40 +20,27 @@
             <?php //$confirmationEmailStatusMessage = $order->getEmailSent() ? __('The order confirmation email was sent') : __('The order confirmation email is not sent'); ?>
             <div class="admin__page-section-item-title">
                 <span class="title">
-                    NUMERO DO ORCAMENTO
+                    <?= $block->escapeHtml(__('Quotation #%1', $quotation->getSendquoteId())) ?>
                 </span>
             </div>
             <div class="admin__page-section-item-content">
                 <table class="admin__table-secondary order-information-table">
                 <tr>
                     <th><?= $block->escapeHtml(__('Quotation Date')) ?></th>
-                    <td><?//= $block->escapeHtml($orderAdminDate) ?></td>
+                    <td><?= $block->formatDate($quotation->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?></td>
                 </tr>
                 <tr>
                     <th><?= $block->escapeHtml(__('Quotation Status')) ?></th>
-                    <td><span id="quotation_status"><?//= $block->escapeHtml($order->getStatusLabel()) ?></span></td>
+                    <td><span id="quotation_status"><?= $block->escapeHtml($quotation->getStatusName($quotation->getStatus())) ?></span></td>
                 </tr>
-                
-                <?php //if ($block->isSingleStoreMode() == false):?>
-                    <tr>
-                        <th><?= $block->escapeHtml(__('Quotation From')) ?></th>
-                        <td><?//= $block->escapeHtml($block->getOrderStoreName(), ['br']) ?></td>
-                    </tr>
-                <?php //endif; ?>
-               
-                
-                <?php //if ($order->getGlobalCurrencyCode() != $order->getBaseCurrencyCode()): ?>
-                    <tr>
-                        <th><?//= $block->escapeHtml(__('%1 / %2 rate:', $order->getGlobalCurrencyCode(), $order->getBaseCurrencyCode())) ?></th>
-                        <td><?//= $block->escapeHtml($order->getBaseToGlobalRate()) ?></td>
-                    </tr>
-                <?php //endif; ?>
-                <?php /*if ($order->getBaseCurrencyCode() != $order->getOrderCurrencyCode()): ?>
-                    <tr>
-                        <th><?= $block->escapeHtml(__('%1 / %2 rate:', $order->getOrderCurrencyCode(), $order->getBaseCurrencyCode())) ?></th>
-                        <th><?= $block->escapeHtml($order->getBaseToOrderRate()) ?></th>
-                    </tr>
-                <?php endif;*/ ?>
+                <tr>
+                    <th><?= $block->escapeHtml(__('Expirate Date')) ?></th>
+                    <td><?= $block->formatDate($quotation->getShelfLife(), \IntlDateFormatter::MEDIUM, false) ?></td>
+                </tr>
+                <tr>
+                    <th><?= $block->escapeHtml(__('Quotation Last Update')) ?></th>
+                    <td><?= $block->formatDate($quotation->getUpdatedAt(), \    IntlDateFormatter::MEDIUM) ?></td>
+                </tr>
             </table>
             </div>
         </div>
@@ -65,17 +55,17 @@
                     <tr>
                         <th><?= $block->escapeHtml(__('Customer Name')) ?></th>
                         <td>
-                            <span>Nome do Cliente</span>
+                            <span><?= $block->escapeHtml($block->getCustomerName()); ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?= $block->escapeHtml(__('Email')) ?></th>
-                        <td><a href="mailto:<?php //echo $block->escapeHtml($order->getCustomerEmail()) ?>">Email do Cliente<?php //echo $block->escapeHtml($order->getCustomerEmail()) ?></a></td>
+                        <td><a href="mailto:<?php echo $block->escapeHtml($block->getCustomerEmail()) ?>"><?php echo $block->escapeHtml($block->getCustomerEmail()) ?></a></td>
                     </tr>
                     <?php if ($groupName = $block->getCustomerGroupName()) : ?>
                         <tr>
                             <th><?= $block->escapeHtml(__('Customer Group')) ?></th>
-                            <td><spas>Grupo do Cliente</span><?//= $block->escapeHtml($groupName) ?></td>
+                            <td><span><?= $block->escapeHtml($groupName) ?></span></td>
                         </tr>
                     <?php endif; ?>
                 </table>

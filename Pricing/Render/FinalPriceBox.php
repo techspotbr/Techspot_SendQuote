@@ -6,6 +6,13 @@
 
 namespace Techspot\SendQuote\Pricing\Render;
 
+use Magento\Framework\View\Element\Template\Context;
+use Magento\Catalog\Model\Product\Pricing\Renderer\SalableResolverInterface;
+use Magento\Framework\Pricing\SaleableInterface;
+use Magento\Framework\Pricing\Price\PriceInterface;
+use Magento\Framework\Pricing\Render\RendererPool;
+use Magento\Framework\App\ObjectManager;
+
 /**
  * Class for final_price rendering
  *
@@ -15,11 +22,41 @@ namespace Techspot\SendQuote\Pricing\Render;
 class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
 {
     /**
+     * @var SalableResolverInterface
+     */
+    private $salableResolver;
+
+     /**
+     * @param Context $context
+     * @param SaleableInterface $saleableItem
+     * @param PriceInterface $price
+     * @param RendererPool $rendererPool
+     * @param array $data
+     * @param SalableResolverInterface $salableResolver
+     * @param MinimalPriceCalculatorInterface $minimalPriceCalculator
+     */
+    public function __construct(
+        Context $context,
+        SaleableInterface $saleableItem,
+        PriceInterface $price,
+        RendererPool $rendererPool,
+        array $data = [],
+        SalableResolverInterface $salableResolver = null
+    ) {
+        $this->salableResolver = $salableResolver ?: ObjectManager::getInstance()->get(SalableResolverInterface::class);
+        parent::__construct($context, $saleableItem, $price, $rendererPool, $data);
+    }
+
+    /**
      * @return string
      */
     protected function _toHtml()
     {
-        return '';
+        $isOnlyForQuotation = $this->getSaleableItem()->_getData(\Techspot\SendQuote\Model\Catalog\Product::ONLY_QUOTATION_ATTRIBUTE);
+        if($isOnlyForQuotation){
+            return __('Price on request');
+        }
+        
         if (!$this->salableResolver->isSalable($this->getSaleableItem())) {
             return '';
         }

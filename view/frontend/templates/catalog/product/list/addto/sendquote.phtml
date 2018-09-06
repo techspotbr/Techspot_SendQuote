@@ -8,7 +8,7 @@
 
 /** @var Techspot\SendQuote\Block\Catalog\Product\ProductList\Item\AddTo\Sendquote $block */
 ?>
-<?php if ($block->getSendquoteHelper()->isAllow()): ?>
+<?php if ($block->isSendQuoteAllowed()): ?>
     <a href="#"
        class="action tosendquote"
        title="<?= $block->escapeHtmlAttr(__('Add to Quotation')) ?>"

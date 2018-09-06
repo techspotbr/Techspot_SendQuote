@@ -5,6 +5,9 @@
  */
 namespace Techspot\SendQuote\Setup;
 
+use Magento\Eav\Setup\EavSetup;
+use Magento\Eav\Setup\EavSetupFactory;
+
 use Magento\Framework\Setup\UpgradeDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -16,6 +19,8 @@ use Magento\Framework\DB\Query\Generator;
 
 class UpgradeData implements UpgradeDataInterface
 {
+    private $eavSetupFactory;
+
     /**
      * @var FieldDataConverterFactory
      */
@@ -39,10 +44,12 @@ class UpgradeData implements UpgradeDataInterface
      * @param Generator $queryGenerator
      */
     public function __construct(
+        EavSetupFactory $eavSetupFactory,
         FieldDataConverterFactory $fieldDataConverterFactory,
         QueryModifierFactory $queryModifierFactory,
         Generator $queryGenerator
     ) {
+        $this->eavSetupFactory = $eavSetupFactory;
         $this->fieldDataConverterFactory = $fieldDataConverterFactory;
         $this->queryModifierFactory = $queryModifierFactory;
         $this->queryGenerator = $queryGenerator;
@@ -75,6 +82,10 @@ class UpgradeData implements UpgradeDataInterface
 
         if (version_compare($context->getVersion(), '2.0.6', '<')) {
             $this->upgradeToVersionTwoZeroSix($setup);
+        }
+
+        if (version_compare($context->getVersion(), '2.0.7', '<')) {
+            $this->upgradeToVersionTwoZeroSeven($setup);
         }
     }
 
@@ -298,5 +309,41 @@ class UpgradeData implements UpgradeDataInterface
             \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_INDEX
         );
         $installer->endSetup();
+    }
+
+    /**
+     * Upgrade to version 2.0.7, add product attribute only_for_quotation
+     *
+     * @param ModuleDataSetupInterface $setup
+     * @return void
+     */
+    private function upgradeToVersionTwoZeroSeven(ModuleDataSetupInterface $setup)
+    {
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+        $eavSetup->addAttribute(
+            \Magento\Catalog\Model\Product::ENTITY,
+            'only_for_quotation',
+            [
+                'type' => 'int',
+                'backend' => '',
+                'frontend' => '',
+                'label' => __('Only For Quotation'),
+                'input' => 'boolean',
+                'class' => '',
+                'source' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
+                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                'visible' => true,
+                'required' => true,
+                'user_defined' => false,
+                'default' => '',
+                'searchable' => false,
+                'filterable' => false,
+                'comparable' => false,
+                'visible_on_front' => false,
+                'used_in_product_listing' => true,
+                'unique' => false,
+                'apply_to' => 'simple,configurable,virtual,bundle,downloadable'
+            ]
+        );
     }
 }

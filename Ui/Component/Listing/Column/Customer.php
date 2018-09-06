@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright © TechSpot Web Agency. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Techspot\SendQuote\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponentFactory;
