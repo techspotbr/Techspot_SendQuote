@@ -118,7 +118,7 @@ class Sendquote implements SectionSourceInterface
      * @param \Magento\Sendquote\Model\Item $sendquoteItem
      * @return array
      */
-    protected function getItemData(\Magento\Sendquote\Model\Item $sendquoteItem)
+    protected function getItemData(\Techspot\SendQuote\Model\Item $sendquoteItem)
     {
         $product = $sendquoteItem->getProduct();
         return [
