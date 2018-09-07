@@ -19,7 +19,7 @@ class Sendquote implements SectionSourceInterface
     const SIDEBAR_ITEMS_NUMBER = 3;
 
     /**
-     * @var \Magento\Sendquote\Helper\Data
+     * @var \Techspot\SendQuote\Helper\Data
      */
     protected $sendquoteHelper;
 
@@ -34,19 +34,19 @@ class Sendquote implements SectionSourceInterface
     protected $view;
 
     /**
-     * @var \Magento\Sendquote\Block\Customer\Sidebar
+     * @var \Techspot\SendQuote\Block\Customer\Sidebar
      */
     protected $block;
 
     /**
-     * @param \Magento\Sendquote\Helper\Data $sendquoteHelper
-     * @param \Magento\Sendquote\Block\Customer\Sidebar $block
+     * @param \Techspot\SendQuote\Helper\Data $sendquoteHelper
+     * @param \Techspot\SendQuote\Block\Customer\Sidebar $block
      * @param \Magento\Catalog\Helper\ImageFactory $imageHelperFactory
      * @param \Magento\Framework\App\ViewInterface $view
      */
     public function __construct(
-        \Magento\Sendquote\Helper\Data $sendquoteHelper,
-        \Magento\Sendquote\Block\Customer\Sidebar $block,
+        \Techspot\SendQuote\Helper\Data $sendquoteHelper,
+        \Magento\SendQuote\Block\Customer\Sidebar $block,
         \Magento\Catalog\Helper\ImageFactory $imageHelperFactory,
         \Magento\Framework\App\ViewInterface $view
     ) {
