@@ -7,6 +7,6 @@
 -->
 <view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
     <vars module="Techspot_SendQuote">
-        <var name="product_image_size">113</var>        <!-- Product image size used in sendquote -->
+        <var name="product_image_size">113</var><!-- Product image size used in sendquote -->
     </vars>
 </view>

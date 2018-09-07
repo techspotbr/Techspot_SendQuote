@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * O Módulo Tech Spot - Send Quote para Magento 2 habilita o cadastro de clientes PF (Pessoa Física) e PJ(Pessoa Jurídica) no cadastro do cliente da sua aplicação Magento.
+ * O Módulo Tech Spot - Send Quote to Magento 2 for Magento 2 makes it possible to set up a quotation..
  * Copyright (C) 2017  Tech Spot 
  * 
- * This file is part of Techspot/Brcustomer.
+ * This file is part of Techspot/SendQuote.
  * 
  * Techspot/Brcustomer is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

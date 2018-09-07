@@ -283,7 +283,7 @@ class UpgradeData implements UpgradeDataInterface
 
         $installer->startSetup();
 
-        $installer->getConnection()->dropIndex($installer->getTable('sendquote'), 'SENDQUOTE_CUSTOMER_ID');
+        //$installer->getConnection()->dropIndex($installer->getTable('sendquote'), 'SENDQUOTE_CUSTOMER_ID');
        
         $installer->endSetup();
     }
