@@ -46,7 +46,7 @@ class Sendquote implements SectionSourceInterface
      */
     public function __construct(
         \Techspot\SendQuote\Helper\Data $sendquoteHelper,
-        \Magento\SendQuote\Block\Customer\Sidebar $block,
+        \Techspot\SendQuote\Block\Customer\Sidebar $block,
         \Magento\Catalog\Helper\ImageFactory $imageHelperFactory,
         \Magento\Framework\App\ViewInterface $view
     ) {
