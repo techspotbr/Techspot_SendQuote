@@ -36,7 +36,7 @@ class CartAddAfter implements ObserverInterface
         $buyRequest = $item->getOptionByCode('info_buyRequest');
         $buyRequestData = $this->serializer->unserialize($buyRequest->getValue());
 
-        if(null != $buyRequestData['sendquote_item_id']){
+        if(isset($buyRequestData['sendquote_item_id']) && null !== $buyRequestData['sendquote_item_id']){
 
             $model = $this->_objectManager->create(\Techspot\SendQuote\Model\Item::class);
             $quotationItem = $model->load($buyRequestData['sendquote_item_id']);

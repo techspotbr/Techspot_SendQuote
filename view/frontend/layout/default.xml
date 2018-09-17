@@ -17,8 +17,8 @@
                 </arguments>
             </block>
         </referenceBlock>
-        <referenceContainer name="sidebar.additional">
+        <!--referenceContainer name="sidebar.additional">
             <block class="Techspot\SendQuote\Block\Customer\Sidebar" name="sendquote_sidebar" as="sendquote" template="Techspot_SendQuote::sidebar.phtml"/>
-        </referenceContainer>
+        </referenceContainer-->
     </body>
 </page>
