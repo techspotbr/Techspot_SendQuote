@@ -45,4 +45,16 @@ class Sendquote extends \Magento\Catalog\Block\Product\ProductList\Item\Block
         }
         return false;
     }
+
+    /**
+     * Retrieve params for adding Product to sendquote
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @return string
+     */
+    public function getAddToSendquoteParams($product)
+    {
+        return $this->_sendquoteHelper->getAddParams($product);
+    }
+
 }
