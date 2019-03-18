@@ -19,12 +19,11 @@ abstract class AbstractBlock extends \Magento\Catalog\Block\Product\AbstractProd
     protected $_collection;
 
     /**
-     * Store sendquote Model
+     * Store sendquote Helper
      *
-     * @var \Techspot\SendQuote\Model\Sendquote
+     * @var  \Techspot\SendQuote\Helper\Data $sendquoteHelper
      */
-    protected $_sendquote;
-
+    protected $_sendquoteHelper;
 
     /**
      * @var \Magento\Framework\App\Http\Context

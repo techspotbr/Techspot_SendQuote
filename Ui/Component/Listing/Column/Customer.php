@@ -11,26 +11,12 @@ use Magento\Ui\Component\Listing\Columns\Column;
 
 class Customer extends Column
 {
-    /**
-     * @var CustomerFactory
-     */
-    protected $_customerFactory;
-
-    /**
-     * @var View
-     */
-    protected $_customerViewHelper;
-
     public function __construct(
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
-        \Magento\Customer\Model\CustomerFactory $customerFactory,
-        \Magento\Customer\Helper\View $customerViewHelper,
         array $components = [],
         array $data = []
     ) {
-        $this->_customerFactory = $customerFactory;
-        $this->_customerViewHelper = $customerViewHelper;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -38,12 +24,8 @@ class Customer extends Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$items) {
-
                 if(null !== $items['customer_id']){
-                    $model = $this->_customerFactory->create();
-                    $customer = $model->load($items['customer_id']);
-                    $customerName = $customer->getFirstname() .' '. $customer->getLastname();
-                    $items['customer_id'] = $customerName;
+                    $items['customer_name'] = $items['firstname'].' '.$items['lastname'];
                 }
             }
         }

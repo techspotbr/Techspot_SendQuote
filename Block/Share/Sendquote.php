@@ -28,24 +28,35 @@ class Sendquote extends \Techspot\SendQuote\Block\AbstractBlock
      * @var \Magento\Customer\Api\CustomerRepositoryInterface
      */
     protected $customerRepository;
+    
+    /**
+     * Store sendquote Helper
+     *
+     * @var  \Techspot\SendQuote\Helper\Data $sendquoteHelper
+     */
+    protected $_sendquoteHelper;
 
     /**
      * @param \Magento\Catalog\Block\Product\Context $context
      * @param \Magento\Framework\App\Http\Context $httpContext
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
-     * @param array $data
+     * @param array $data,
+     * @param \Techspot\SendQuote\Helper\Data $sendquoteHelper
      */
     public function __construct(
         \Magento\Catalog\Block\Product\Context $context,
         \Magento\Framework\App\Http\Context $httpContext,
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
-        array $data = []
+        array $data = [],
+        \Techspot\SendQuote\Helper\Data $sendquoteHelper
     ) {
         $this->customerRepository = $customerRepository;
+        $this->_sendquoteHelper = $sendquoteHelper;
         parent::__construct(
             $context,
             $httpContext,
-            $data
+            $data,
+            $sendquoteHelper
         );
     }
 

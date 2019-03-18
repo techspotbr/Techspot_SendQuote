@@ -35,4 +35,17 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
     ) {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $mainTable, $resourceModel);
     }
+
+    protected function _initSelect()
+    {
+        parent::_initSelect();
+
+        $this->join(
+            [$this->getTable('customer_entity')],
+            'main_table.customer_id = '.$this->getTable('customer_entity').'.entity_id',
+            array('firstname', 'lastname', 'email')
+        );
+
+        return $this;
+    }
 }
