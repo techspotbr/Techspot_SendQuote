@@ -15,7 +15,7 @@ class Edit extends \Magento\Backend\App\Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Techspot_SendQuote::sendquote';
+    const ADMIN_RESOURCE = 'Techspot_SendQuote::actions_edit';
 
     /**
      * @var Registry

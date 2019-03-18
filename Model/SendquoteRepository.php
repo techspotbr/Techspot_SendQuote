@@ -10,6 +10,7 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Techspot\SendQuote\Api\SendquoteRepositoryInterface;
 use Techspot\SendQuote\Model\ResourceModel\Metadata;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Techspot\SendQuote\Api\Data\SendquoteSearchResultInterfaceFactory as SearchResultFactory;
 
 /**
  * Class SendquoteRepository

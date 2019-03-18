@@ -21,7 +21,7 @@ class Save extends \Magento\Backend\App\Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Techspot_SendQuote::sendquote';
+    const ADMIN_RESOURCE = 'Techspot_SendQuote::create';
 
     /**
      * @param \Magento\Backend\App\Action\Context $context

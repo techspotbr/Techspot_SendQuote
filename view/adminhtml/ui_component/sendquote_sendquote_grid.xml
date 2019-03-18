@@ -81,13 +81,29 @@
                 <filter>text</filter>
                 <label translate="true">Quotation ID</label>
                 <sorting>asc</sorting>
+                
             </settings>
         </column>
-        <column name="customer_id" class="Techspot\SendQuote\Ui\Component\Listing\Column\Customer">
+        <column name="customer_name" class="Techspot\SendQuote\Ui\Component\Listing\Column\Customer">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Customer</label>
                 <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="email">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Email</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <options class="Techspot\SendQuote\Ui\Component\Listing\Column\Status\Options"/>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
             </settings>
         </column>
         <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
@@ -104,14 +120,6 @@
                 <label translate="true">Quotation Last Update</label>
             </settings>
         </column>
-        <column name="status" component="Magento_Ui/js/grid/columns/select">
-            <settings>
-                <filter>select</filter>
-                <options class="Techspot\SendQuote\Ui\Component\Listing\Column\Status\Options"/>
-                <dataType>select</dataType>
-                <label translate="true">Status</label>
-            </settings>
-        </column>
         <!--column name="order_increment_id">
             <settings>
                 <filter>text</filter>
@@ -123,7 +131,7 @@
                 <filter>dateRange</filter>
                 <dataType>date</dataType>
                 <label translate="true">Order Date</label>
-            </settings>
+            </settings>x
         </column>
         <column name="billing_name">
             <settings>
