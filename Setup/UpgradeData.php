@@ -87,6 +87,14 @@ class UpgradeData implements UpgradeDataInterface
         if (version_compare($context->getVersion(), '2.0.7', '<')) {
             $this->upgradeToVersionTwoZeroSeven($setup);
         }
+
+        if (version_compare($context->getVersion(), '2.0.8', '<')) {
+            $this->upgradeToVersionTwoZeroEight($setup);
+        }
+
+        if (version_compare($context->getVersion(), '2.0.9', '<')) {
+            $this->upgradeToVersionTwoZeroNine($setup);
+        }
     }
 
     /**
@@ -345,5 +353,64 @@ class UpgradeData implements UpgradeDataInterface
                 'apply_to' => 'simple,configurable,virtual,bundle,downloadable'
             ]
         );
+    }
+
+    /**
+     * Upgrade to version 2.0.8, add quotation text description
+     *
+     * @param ModuleDataSetupInterface $setup
+     * @return void
+     */
+    private function upgradeToVersionTwoZeroEight(ModuleDataSetupInterface $setup)
+    {
+
+        $installer = $setup;
+
+        $installer->startSetup();
+
+        $installer->getConnection()
+            ->addColumn(
+                $installer->getTable('sendquote'),
+                'description',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'nullable' => false,
+                    'input' => 'textarea',
+                    'wysiwyg_enabled' => true,
+                    'required' => false,
+                    'comment' => 'Description'
+                ]
+            );
+
+        $installer->endSetup();
+    }
+
+
+    /**
+     * Upgrade to version 2.0.9, add send text description
+     *
+     * @param ModuleDataSetupInterface $setup
+     * @return void
+     */
+    private function upgradeToVersionTwoZeroNine(ModuleDataSetupInterface $setup)
+    {
+
+        $installer = $setup;
+
+        $installer->startSetup();
+
+        $installer->getConnection()
+            ->addColumn(
+                $installer->getTable('sendquote'),
+                'sent_customer',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                    'unsigned' => true,
+                    'nullable' => false,
+                    'comment' => 'Sent customer Counter',
+                    'default' => '0'
+                ]
+            );
+        $installer->endSetup();
     }
 }

@@ -5,6 +5,13 @@
  */
 namespace Techspot\SendQuote\Block\Adminhtml\Sendquote\Edit;
 
+use Magento\Backend\Block\Widget\Form\Generic;
+use Magento\Backend\Block\Widget\Tab\TabInterface;
+use Magento\Backend\Block\Template\Context;
+use Magento\Framework\Registry;
+use Magento\Framework\Data\FormFactory;
+use Magento\Cms\Model\Wysiwyg\Config;
+
 /**
  * Sendquote view form
  *
@@ -14,6 +21,35 @@ namespace Techspot\SendQuote\Block\Adminhtml\Sendquote\Edit;
  */
 class Form extends \Magento\Backend\Block\Widget\Form\Generic
 {
+    /**
+     * @var \Magento\Cms\Model\Wysiwyg\Config
+     */
+    protected $_wysiwygConfig;
+  
+    /**
+     * @var \Magebay\Hello\Model\System\Config\Status
+     */
+    protected $_status;
+   /**
+     * @param Context $context
+     * @param Registry $registry
+     * @param FormFactory $formFactory
+     * @param Config $wysiwygConfig
+     * @param Status $status
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        FormFactory $formFactory,
+        Config $wysiwygConfig,
+        array $data = []
+    ) {
+        $this->_wysiwygConfig = $wysiwygConfig;
+        parent::__construct($context, $registry, $formFactory, $data);
+    }
+
+
     /**
      * Retrieve source
      *
@@ -74,6 +110,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         );
 
         $dateFormat = $this->_localeDate->getDateFormat(\IntlDateFormatter::SHORT);
+        
         $fieldset->addField(
             'shelf_life',
             'date',
@@ -84,6 +121,21 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'required' => true,
                 'date_format' => $dateFormat,
                 'time' => false
+            ]
+        );
+
+        $fieldset->addField(
+            'description',
+            'editor',
+            [
+                'name' => 'quotation[description]',
+                'label' => __('Comments'),
+                'title' => __('Comments'),
+                'rows' => '5',
+                'cols' => '30',
+                'wysiwyg' => true,
+                'config' => $this->_wysiwygConfig->getConfig(),
+                'required' => true
             ]
         );
 
@@ -100,6 +152,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             ]
         );
         
+        $form->setValues($this->getSource()->getData());
         $form->setUseContainer(false);
         $this->setForm($form);
         return parent::_prepareForm();

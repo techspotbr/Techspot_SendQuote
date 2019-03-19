@@ -13,7 +13,7 @@
     <td class="col-product-sku"><span><?= /* @escapeNotVerified */ $block->getItemProductColumn($_item, 'sku') ?></span></th>
     <td class="col-product-name"><span><?= /* @escapeNotVerified */ $block->getItemProductColumn($_item, 'name') ?></span></th>
     <td class="col-store-id"><span><?= /* @escapeNotVerified */ $block->getStoreName($_item->getStoreId()) ?></span></th>
-    <td class="col-description"><?= /* @escapeNotVerified */ $_item->getDescription() ?></td>
+    <td class="col-description"><?= /* @escapeNotVerified */ $block->escapeHtml($_item->getDescription()) ?></td>
     <td class="col-qty"><?= /* @escapeNotVerified */ $_item->getQty()*1 ?></td>
     <td class="col-price"><?= /* @escapeNotVerified */ $block->getFormatedPrice($_item->getPrice()) ?></td>
     <td class="col-custom-price">

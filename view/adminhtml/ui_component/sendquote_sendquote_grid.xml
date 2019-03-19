@@ -98,6 +98,13 @@
                 <sorting>asc</sorting>
             </settings>
         </column>
+        <column name="sent_customer">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Sent to the Customer</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
         <column name="status" component="Magento_Ui/js/grid/columns/select">
             <settings>
                 <filter>select</filter>

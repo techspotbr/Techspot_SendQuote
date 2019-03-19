@@ -67,6 +67,7 @@ class Save extends \Magento\Backend\App\Action
 
             $quotation->setShelfLife($formattedDate);
             $quotation->setStatus($data['status']);
+            $quotation->setDescription($data['description']);
             $quotation->save();
                         
             foreach($data['items'] as $itemId => $itemData){

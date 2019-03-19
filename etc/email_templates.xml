@@ -7,5 +7,5 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
     <template id="sendquote_email_email_template" label="Quote Sharing" file="share_notification.html" type="html" module="Techspot_SendQuote" area="frontend"/>
-    <template id="sendquote_request_email_template" label="Request Quotation" file="request_notification.html" type="html" module="Techspot_SendQuote" area="frontend"/>
+    <template id="sendquote_email_email_response_template" label="Request Quotation" file="response_notification.html" type="html" module="Techspot_SendQuote" area="frontend"/>
 </config>
