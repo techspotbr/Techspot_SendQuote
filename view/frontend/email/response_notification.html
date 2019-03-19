@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 -->
-<!--@subject {{trans "Quotation:  %quotation_number" quotation_number=$quotationNumber}} @-->
+<!--@subject {{trans "Quotation response:  %quotation_number" quotation_number=$quotationNumber}} @-->
 <!--@vars {
 "var quotationNumber":"Customer Name",
 "var customerName":"Customer Name",
@@ -15,12 +15,12 @@
 
 {{template config_path="design/email/header_template"}}
 
-<p>{{trans "%customer_name  asks for the quotation of the following products:" customer_name=$customerName store_name=$store.getFrontendName()}}</p>
+<p>{{trans "%customer_name, we forwarded a response to your request:" customer_name=$customerName store_name=$store.getFrontendName()}}</p>
 {{depend message}}
 <table class="message-info">
     <tr>
         <td>
-            <h3>{{trans "Message from %customer_name:" customer_name=$customerName}}</h3>
+            <h3>{{trans "Comments"}}</h3>
             {{var message|raw}}
         </td>
     </tr>

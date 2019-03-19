@@ -81,6 +81,15 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
                     'onclick' => 'setLocation(\'' . $this->getPrintUrl() . '\')'
                 ]
             );
+
+            $this->buttonList->add(
+                'sent',
+                [
+                    'label' => __('Sent to the Customer'),
+                    'class' => 'sent',
+                    'onclick' => 'setLocation(\'' . $this->getSendToCustomerUrl() . '\')'
+                ]
+            );
         }
     }
 
@@ -148,7 +157,17 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      */
     public function getPrintUrl()
     {
-        return $this->getUrl('sendquote/*/print', ['sendquote_id' => $this->getSendquote()->getgetSendquoteId()]);
+        return $this->getUrl('sendquote/*/print', ['sendquote_id' => $this->getSendquote()->getSendquoteId()]);
+    }
+
+    /**
+     * Get sent to the customer url
+     *
+     * @return string
+     */
+    public function getSendToCustomerUrl()
+    {
+        return $this->getUrl('sendquote/*/senttocustomer', ['sendquote_id' => $this->getSendquote()->getSendquoteId()]);
     }
 
     /**

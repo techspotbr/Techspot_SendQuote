@@ -15,6 +15,7 @@
                 <email_identity>general</email_identity>
                 <email_template>sendquote_email_email_template</email_template>
                 <email_request_template>sendquote_request_email_template</email_request_template>
+                <email_response_template>sendquote_email_email_response_template</email_response_template>
                 <number_limit>10</number_limit>
                 <text_limit>255</text_limit>
             </email>

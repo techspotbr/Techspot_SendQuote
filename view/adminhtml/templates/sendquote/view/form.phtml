@@ -41,6 +41,15 @@ $quotation = $block->getSendquote();
                     <th><?= $block->escapeHtml(__('Quotation Last Update')) ?></th>
                     <td><?= $block->formatDate($quotation->getUpdatedAt(), \    IntlDateFormatter::MEDIUM) ?></td>
                 </tr>
+                <tr>
+                    <th><?= $block->escapeHtml(__('Comments')) ?></th>
+                    <td><?= $quotation->getDescription() ?></td>
+                </tr>
+
+                <tr>
+                    <th><?= $block->escapeHtml(__('Sent to the Customer')) ?></th>
+                    <td><?= __('Sent %1 times', $quotation->getSentCustomer()) ?></td>
+                </tr>
             </table>
             </div>
         </div>

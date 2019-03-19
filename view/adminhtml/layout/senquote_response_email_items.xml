@@ -7,8 +7,6 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <block class="Techspot\SendQuote\Block\Share\Email\Items" name="sendquote.email.items" cacheable="false"/>
-        <block class="Techspot\SendQuote\Block\Request\Email\Items" name="sendquote.request.email.items" cacheable="false"/>
         <block class="Techspot\SendQuote\Block\Response\Email\Items" name="sendquote.response.email.items" cacheable="false"/>
     </body>
 </page>
