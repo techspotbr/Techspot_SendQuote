@@ -174,7 +174,7 @@ class Sendquote implements SectionSourceInterface
             'src' => $helper->getUrl(),
             'width' => $width,
             'height' => $height,
-            'alt' => $helper->getLabel(),
+            'alt' => 'Teste',//$helper->getLabel(),
         ];
     }
 }

@@ -110,6 +110,9 @@ class Update extends \Techspot\SendQuote\Controller\AbstractIndex
                 try {
                     $item->setDescription($description)->setQty($qty)->save();
                     $updatedItems++;
+                    $message = __('Your quotation has been updated!');
+                    $this->messageManager->addSuccess($message);
+
                 } catch (\Exception $e) {
                     $this->messageManager->addError(
                         __(
@@ -131,16 +134,16 @@ class Update extends \Techspot\SendQuote\Controller\AbstractIndex
             }
 
             if (isset($post['save_and_share'])) {
-                $resultRedirect->setPath('*/*/share', ['sendquote_id' => $sendquote->getId()]);
+                $resultRedirect->setPath('*/*/share', ['id' => $sendquote->getId()]);
                 return $resultRedirect;
             }
 
             if (isset($post['save_and_request'])) {
-                $resultRedirect->setPath('*/*/request', ['sendquote_id' => $sendquote->getId()]);
+                $resultRedirect->setPath('*/*/request', ['id' => $sendquote->getId()]);
                 return $resultRedirect;
             }
         }
-        $resultRedirect->setPath('*', ['sendquote_id' => $sendquote->getId()]);
+        $resultRedirect->setPath('*/index/view', ['id' => $sendquote->getId()]);
         return $resultRedirect;
     }
 }

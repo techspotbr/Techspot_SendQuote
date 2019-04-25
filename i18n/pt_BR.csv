@@ -24,17 +24,17 @@
 "Please enter an email address.","Please enter an email address."
 "This quotation can be shared %1 more times.","This quotation can be shared %1 more times."
 "Please enter a valid email address.","Please enter a valid email address."
-"Your quotation has been shared.","Your quotation has been shared."
+"Your quotation has been shared.","Seu orçamento foi compartilhado."
 "We can't delete item from Quotations right now.","We can't delete item from Quotations right now."
 "Can't save description %1","Can't save description %1"
 "Can't update quotation","Can't update quotation"
-"%1 has been updated in your Quotations.","%1 has been updated in your Quotations."
+"%1 has been updated in your Quotations.","%1 foi atualizado em seu orçamento."
 "We can't update your Quotations right now.","We can't update your Quotations right now."
 "The requested Quotations doesn't exist.","The requested Quotations doesn't exist."
 "We can't create the Quotations right now.","We can't create the Quotations right now."
 "%1 items","%1 items"
 "1 item","1 item"
-Comment,Comment
+"Comment","Comentário"
 "Display number of items in quotation","Display number of items in quotation"
 "Display item quantities","Display item quantities"
 "An item option with code %1 already exists.","An item option with code %1 already exists."
@@ -47,12 +47,12 @@ Comment,Comment
 "We couldn't add the following product(s) to the shopping cart: %1.","We couldn't add the following product(s) to the shopping cart: %1."
 "We can't update the Quotations right now.","We can't update the Quotations right now."
 "%1 product(s) have been added to shopping cart: %2.","%1 product(s) have been added to shopping cart: %2."
-Comment:,Comment:
+"Comment:","Descrição:"
 "We cannot retrieve the Quotations.","Não conseguimos retornar o(s) Orçamento(s)."
-"%1's Quotation","%1's Quotation"
+"%1's Quotation","%1's Orçamento"
 "We can't specify a quotation item.","We can't specify a quotation item."
-"The product does not exist.","The product does not exist."
-"Test Phrase","Test Phrase"
+"The product does not exist.","O Produto não existe."
+"Test Phrase","Frase teste"
 message,message
 Message,Message
 error-message,error-message
@@ -118,11 +118,13 @@ Enabled,Enabled
 Quantity,Quantity
 "Add Locale","Add Locale"
 "Add Date","Add Date"
+"Action","Ação"
+"Date","Data"
 "Days in Quotations","Days in Quotations"
 Action,Action
 Configure,Configure
 Delete,Delete
-"Product Details and Comment","Product Details and Comment"
+"Product Details and Comment","Detalhes e Comentários do Produto"
 "%1 has been added to your Quotation.","%1 foi adicionado ao seu orçamento."
 "Your quotation has been shared.","Seu orçamento foi compartilhado."
 "Your quotation was requested. Wait for our team to return.","Seu orçamento foi solicitado. Aguarde o retorno de nossa Equipe!"
@@ -162,3 +164,6 @@ Delete,Delete
 "Quotation response","Resposta ao Orçamento:"
 "1%, we forwarded a response to your request:","1%, encaminhamos abaixo o orçamento solicitado:"
 "Price Quote","Preço Orçado"
+"Your quotation has been updated!","Seu orçamento foi atualizado!"
+"Price","Preço"
+"Action","Ação"
