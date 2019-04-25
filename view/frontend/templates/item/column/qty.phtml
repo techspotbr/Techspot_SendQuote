@@ -11,4 +11,12 @@
 /** @var \Techspot\SendQuote\Model\Item $item */
 $item = $block->getItem();
 ?>
-<span class="qty"><?= /* @escapeNotVerified */  (int)($block->getAddToCartQty($item) * 1) ?></span>
+<div class="field qty-box">
+    <label class="label" for="product-item-qty-<?= $block->escapeHtmlAttr($item->getSendquoteItemId()) ?>">
+            <span><?= $block->escapeHtml(__('Qty')) ?></span>
+    </label>
+    <div class="control">
+        <input id="product-item-qty-<?= $block->escapeHtmlAttr($item->getSendquoteItemId()) ?>" name="qty[<?= $block->escapeHtmlAttr($item->getSendquoteItemId()) ?>]" title="<?= $block->escapeHtmlAttr(__('qty')) ?>" class="product-item-qty" value="<?= /* @escapeNotVerified */  (int)($block->getAddToCartQty($item) * 1) ?>"/>
+    </div>
+<!--span class="qty"><?= /* @escapeNotVerified */  (int)($block->getAddToCartQty($item) * 1) ?></span-->
+</div>

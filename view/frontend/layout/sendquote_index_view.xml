@@ -49,14 +49,14 @@
                             <arguments>
                                 <argument name="css_class" xsi:type="string">product-item-actions</argument>
                             </arguments>
-                            <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Edit" name="customer.sendquote.item.edit" template="Techspot_SendQuote::item/column/edit.phtml" before="-" cacheable="false"/>
+                            <!--block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Edit" name="customer.sendquote.item.edit" template="Techspot_SendQuote::item/column/edit.phtml" before="-" cacheable="false"/-->
                             <block class="Techspot\SendQuote\Block\Customer\Sendquote\Item\Column\Remove" name="customer.sendquote.item.remove" template="Techspot_SendQuote::item/column/remove.phtml" cacheable="false"/>
                         </block>
                     </block>
                 </block>
                 <container name="customer.sendquote.buttons" as="control_buttons" label="Sendquote Control Buttons">
                     <block class="Techspot\SendQuote\Block\Customer\Sendquote\Button" name="customer.sendquote.button.update" template="Techspot_SendQuote::button/update.phtml" cacheable="false"/>
-                    <block class="Techspot\SendQuote\Block\Customer\Sendquote\Button" name="customer.sendquote.button.request" template="Techspot_SendQuote::button/request.phtml" cacheable="false"/>
+                    <!--block class="Techspot\SendQuote\Block\Customer\Sendquote\Button" name="customer.sendquote.button.request" template="Techspot_SendQuote::button/request.phtml" cacheable="false"/-->
                     <!--block class="Techspot\SendQuote\Block\Customer\Sendquote\Button" name="customer.sendquote.button.share" template="Techspot_SendQuote::button/share.phtml" cacheable="false"/-->
                     <block class="Techspot\SendQuote\Block\Customer\Sendquote\Button" name="customer.sendquote.button.toCart" template="Techspot_SendQuote::button/tocart.phtml" cacheable="false"/>
                 </container>

@@ -10,6 +10,8 @@
 ?>
 <?php $_quotations = $block->getQuotations(); ?>
 <?php if ($_quotations && count($_quotations)): ?>
+
+    <a class="actions button primary" href=""><?= __('Create New Quotation') ?></a>
     <div class="table-wrapper quotations-history">
         <table class="data table table-quotation-items history" id="my-quotations-table">
             <caption class="table-caption"><?= /* @escapeNotVerified */ __('Orders') ?></caption>
