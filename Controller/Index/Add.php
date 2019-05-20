@@ -149,7 +149,9 @@ class Add extends \Techspot\SendQuote\Controller\AbstractIndex
             );
         }
 
-        $resultRedirect->setPath('sendquote/index/quotations', ['sendquote_id' => $sendquote->getId()]);
+
+        //$resultRedirect->setPath('sendquote/index/quotations', ['sendquote_id' => $sendquote->getId()]);
+        $resultRedirect->setPath('sendquote/index/send', ['sendquote_id' => $sendquote->getId()]);
         return $resultRedirect;
     }
 }
