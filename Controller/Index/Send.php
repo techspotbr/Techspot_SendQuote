@@ -110,7 +110,7 @@ class Send extends \Techspot\SendQuote\Controller\AbstractIndex
     }
 
     /**
-     * Share sendquote
+     * Send sendquote
      *
      * @return \Magento\Framework\Controller\Result\Redirect
      * @throws NotFoundException
@@ -120,68 +120,27 @@ class Send extends \Techspot\SendQuote\Controller\AbstractIndex
      */
     public function execute()
     {
+        
         /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
+        
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        if (!$this->_formKeyValidator->validate($this->getRequest())) {
-            $resultRedirect->setPath('*/*/');
-            return $resultRedirect;
-        }
-
+        
         $sendquote = $this->sendquoteProvider->getSendquote();
         if (!$sendquote) {
             throw new NotFoundException(__('Page not found.'));
         }
 
-        $sharingLimit = $this->_sendquoteConfig->getSharingEmailLimit();
-        $textLimit = $this->_sendquoteConfig->getSharingTextLimit();
-        $emailsLeft = $sharingLimit - $sendquote->getShared();
-
-        $emails = $this->getRequest()->getPost('emails');
-        $emails = empty($emails) ? $emails : explode(',', $emails);
-
-        $error = false;
-        $message = (string)$this->getRequest()->getPost('message');
-        if (strlen($message) > $textLimit) {
-            $error = __('Message length must not exceed %1 symbols', $textLimit);
-        } else {
-            $message = nl2br(htmlspecialchars($message));
-            if (empty($emails)) {
-                $error = __('Please enter an email address.');
-            } else {
-                if (count($emails) > $emailsLeft) {
-                    $error = __('This quotation can be requested %1 more times.', $emailsLeft);
-                } else {
-                    foreach ($emails as $index => $email) {
-                        $email = trim($email);
-                        if (!\Zend_Validate::is($email, \Magento\Framework\Validator\EmailAddress::class)) {
-                            $error = __('Please enter a valid email address.');
-                            break;
-                        }
-                        $emails[$index] = $email;
-                    }
-                }
-            }
-        }
-
-        if ($error) {
-            $this->messageManager->addError($error);
-            $this->sendquoteSession->setSharingForm($this->getRequest()->getPostValue());
-            $resultRedirect->setPath('*/*/request');
-            return $resultRedirect;
-        }
         /** @var \Magento\Framework\View\Result\Layout $resultLayout */
         $resultLayout = $this->resultFactory->create(ResultFactory::TYPE_LAYOUT);
         $this->addLayoutHandles($resultLayout);
         $this->inlineTranslation->suspend();
 
-        $sent = 0;
-
         try {
             $customer = $this->_customerSession->getCustomerDataObject();
             $customerName = $this->_customerHelperView->getCustomerName($customer);
 
-            $message .= $this->getRssLink($sendquote->getId(), $resultLayout);
-            $emails = array_unique($emails);
+            $message = __('NEW QUOTATION NEED RESPONSE: %1', $sendquote->getId());
+            $emails[] = $customer->getEmail();
             $sharingCode = $sendquote->getSharingCode();
 
             try {
@@ -202,7 +161,7 @@ class Send extends \Techspot\SendQuote\Controller\AbstractIndex
                             'customerName' => $customerName,
                             'salable' => $sendquote->isSalable() ? 'yes' : '',
                             'items' => $this->getSendquoteItems($resultLayout),
-                            'viewOnSiteLink' => $this->_url->getUrl('*/shared/index', ['code' => $sharingCode]),
+                            //'viewOnSiteLink' => $this->_url->getUrl('*/shared/index', ['code' => $sharingCode]),
                             'message' => $message,
                             'store' => $this->storeManager->getStore(),
                         ]
@@ -217,27 +176,27 @@ class Send extends \Techspot\SendQuote\Controller\AbstractIndex
 
                     $transport->sendMessage();
 
-                    $sent++;
+                   
                 }
             } catch (\Exception $e) {
-                $sendquote->setShared($sendquote->getShared() + $sent);
+                
                 $sendquote->save();
                 throw $e;
             }
-            $sendquote->setShared($sendquote->getShared() + $sent);
+           
             $sendquote->save();
 
             $this->inlineTranslation->resume();
 
             $this->_eventManager->dispatch('sendquote_share', ['sendquote' => $sendquote]);
             $this->messageManager->addSuccess(__('Your quotation was requested. Wait for our team to return.'));
-            $resultRedirect->setPath('*/*', ['sendquote_id' => $sendquote->getId()]);
+            $resultRedirect->setPath('*/quotations', ['sendquote_id' => $sendquote->getId()]);
             return $resultRedirect;
         } catch (\Exception $e) {
             $this->inlineTranslation->resume();
             $this->messageManager->addError($e->getMessage());
             $this->sendquoteSession->setSharingForm($this->getRequest()->getPostValue());
-            $resultRedirect->setPath('*/*/share');
+            $resultRedirect->setPath('*/*/quotations');
             return $resultRedirect;
         }
     }
